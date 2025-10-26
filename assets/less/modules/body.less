@@ -1,0 +1,121 @@
+@import (reference) "../variables.less";
+
+body.dark-mode {
+  background-color: @dark-bg;
+  color: @dark-text;
+
+  .navbar-brand {
+    span {
+      color: #f5f5f5 !important;
+    }
+  }
+
+  .nav-link {
+    color: #ccc !important;
+  }
+
+  .nav-btn {
+    background-color: @dark-nav-bg !important;
+    color: #f5f5f5 !important;
+
+    &:hover {
+      background-color: @dark-nav-hover !important;
+    }
+  }
+
+  .hero {
+    background: @dark-bg;
+
+    img {
+      border: 5px solid @dark-hero-border;
+    }
+
+    h1 {
+      color: @dark-hero-text;
+    }
+
+    p {
+      color: @dark-hero-subtext !important;
+    }
+  }
+
+  .badge.bg-light {
+    background-color: @dark-badge-bg !important;
+    color: @dark-badge-text !important;
+  }
+
+  main {
+    background: @dark-main-bg;
+  }
+
+  .titulo-gradiente {
+    background: linear-gradient(90deg, #ff6b6b, #bc1018);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  #search {
+    background: @dark-search-bg;
+    color: #f5f5f5;
+    border: 1px solid @dark-search-border;
+
+    &::placeholder {
+      color: @dark-search-placeholder;
+    }
+  }
+
+  .badge.bg-danger-subtle {
+    background: #2c0a0a !important;
+    color: #ff6b6b !important;
+  }
+
+  .btn-outline-secondary {
+    border-color: @dark-btn-border !important;
+    color: @dark-btn-text !important;
+
+    &:hover {
+      background: @dark-btn-hover-bg !important;
+      color: @dark-btn-hover-text !important;
+    }
+  }
+
+  .card {
+    background: @dark-card-bg;
+    color: @dark-text;
+    box-shadow: @dark-card-shadow;
+
+    p {
+      color: #aaa !important;
+    }
+  }
+
+  footer {
+    background: @dark-footer-gradient;
+
+    h5 {
+      color: @dark-hero-text;
+    }
+
+    p {
+      color: @dark-hero-subtext !important;
+    }
+  }
+
+  .text-muted,
+  .text-gray-600 {
+    color: #aaa !important;
+  }
+
+  section.py-5 {
+    background: @dark-section-gradient !important;
+  }
+
+  .text-gray-800 {
+    color: #e0e0e0 !important;
+  }
+
+  .modal-content {
+    background: @dark-card-bg;
+  }
+}

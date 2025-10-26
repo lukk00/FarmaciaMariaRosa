@@ -1,0 +1,215 @@
+@import (reference) "../variables.less";
+@import (reference) "../mixins.less";
+
+.navbar {
+  background: linear-gradient(90deg, @navbar-gradient-start, @navbar-gradient-mid, @navbar-gradient-end);
+  background-size: 200% 100%;
+  animation: gradientFlow 8s ease infinite;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 1rem 40px !important;
+
+  .navbar-brand {
+    transform: translateY(0);
+    .transition(transform);
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    img.logo-animate {
+      .transition(transform, box-shadow);
+      border-radius: 30%;
+
+      &:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 0 15px rgba(236, 50, 55, 0.5);
+      }
+    }
+
+    span {
+      font-family: @font-secondary;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+      .transition(color, text-shadow);
+
+      &:hover {
+        color: #F9F9F9;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+
+  .navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
+    gap: 30px !important;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-btn {
+    color: #ffffff !important;
+    font-family: @font-secondary;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 9px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    .transition(all);
+
+    &:hover {
+      background: @nav-btn-hover-bg;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      .hover-scale(1.1);
+    }
+
+    &.nav-btn-activo {
+      background: @nav-active-bg !important;
+      color: @nav-active-color !important;
+      font-weight: 600;
+      padding: 8px 20px !important;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-underline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: @nav-active-color;
+      .transition(width);
+
+      .nav-btn:hover &,
+      .nav-btn-activo & {
+        width: 100%;
+      }
+    }
+  }
+
+  .custom-toggler {
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 5px;
+    .transition(all);
+
+    &:hover {
+      background: @nav-btn-hover-bg;
+      border-color: @nav-active-color;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    &:hover .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23cb234a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+  }
+
+  .navbar-collapse {
+    .transition(transform, opacity);
+
+    &.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &.collapsing {
+      transform: translateY(-10px);
+      opacity: 0.8;
+    }
+  }
+
+  .btn-custom-nav {
+    display: flex !important;
+    justify-content: center;
+    width: 50px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    padding: 8px;
+    .transition(all);
+    height: 40px;
+
+    &:hover {
+      background: @nav-active-color;
+      border-color: @nav-active-color;
+      .hover-scale(1.1);
+      box-shadow: 0 0 10px rgba(203, 35, 74, 0.5);
+    }
+
+    svg {
+      stroke: #ffffff;
+      .transition(transform);
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    background: @navbar-gradient-start;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 10px;
+
+    .nav-btn {
+      display: block;
+      text-align: center;
+      margin: 5px 0;
+
+      .nav-underline {
+        display: none;
+      }
+    }
+
+    .btn-custom-nav {
+      margin: 10px auto;
+    }
+  }
+}
+
+body.dark-mode {
+  .navbar {
+    background: linear-gradient(90deg, #1e1e1e, #121212) !important;
+
+    .navbar-nav {
+      background-color: #121212;
+    }
+
+    .nav-link.nav-btn.nav-btn-activo {
+      background-color: white !important;
+      color: black !important;
+    }
+
+    .navbar-toggler {
+      .transition(all);
+
+      &:hover {
+        background: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  a.nav-link {
+    width: 150px;
+  }
+}

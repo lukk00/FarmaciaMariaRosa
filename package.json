@@ -1,0 +1,17 @@
+{
+  "name": "farmaciamariarosa-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:less": "lessc assets/less/main.less assets/css/main.css",
+    "watch:less": "lessc --watch assets/less/main.less assets/css/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "less": "^4.4.1"
+  }
+}
