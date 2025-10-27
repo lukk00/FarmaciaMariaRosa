@@ -1,0 +1,210 @@
+@import (reference) "../variables.less";
+
+#cartCount {
+  background: @btn-gradient-start;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+// Modal del carrito
+#cartModal {
+  .modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, @btn-gradient-start, @btn-gradient-end);
+    color: white;
+    border-bottom: none;
+
+    .btn-close {
+      filter: invert(1);
+      opacity: 0.8;
+      &:hover { opacity: 1; }
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 10px;
+    }
+  }
+
+  .modal-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 1.5rem;
+
+    #cartTotal {
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// Items del carrito
+.cart-item {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+
+  &:hover {
+    background: rgba(236, 50, 55, 0.05);
+    transform: translateX(4px);
+  }
+
+  img {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .quantity-controls {
+    .btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      font-weight: bold;
+      border-radius: 50% !important;
+    }
+  }
+}
+
+// Botón de pago
+#checkoutBtn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #218838, #1da88a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+  }
+}
+
+// Toast personalizado
+.toast {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border: none;
+
+  .toast-body {
+    font-weight: 500;
+  }
+}
+
+/* === MODO OSCURO === */
+body.dark-mode {
+  #cartCount {
+    background: #ff6b6b;
+    border-color: #333;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+  }
+
+  #cartModal {
+    .modal-content {
+      background: @dark-card-bg;
+      color: @dark-text;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #b91c1c, #9a0d14);
+    }
+
+    .modal-body {
+      &::-webkit-scrollbar-track { background: #333; }
+      &::-webkit-scrollbar-thumb { background: #555; }
+    }
+
+    .modal-footer {
+      background: #1a1a1a;
+      border-top: 1px solid #333;
+    }
+  }
+
+  .cart-item:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+
+  .quantity-controls .btn {
+    background: #333;
+    color: #eee;
+    border-color: #555;
+
+    &:hover {
+      background: #444;
+    }
+  }
+
+  #checkoutBtn {
+    background: linear-gradient(135deg, #218838, #1da88a);
+    &:hover {
+      background: linear-gradient(135deg, #1e7e34, #1a946f);
+    }
+  }
+
+  .toast {
+    background: #333 !important;
+    color: #fff;
+  }
+  
+}
+#shopCar {
+  position: relative;
+
+  #cartCount {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+    line-height: 1;
+    transition: all 0.3s ease;
+  }
+
+  &:hover #cartCount {
+    transform: scale(1.1);
+  }
+}
