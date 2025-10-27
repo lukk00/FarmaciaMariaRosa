@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let productos = [];
   let currentPage = 1;
-  const itemsPerPage = 6; // Cambia este número según se quiera
+  const itemsPerPage = 6; 
   const searchInput = document.getElementById("searchInput");
   const categoryFilter = document.getElementById("categoryFilter");
   let productosFiltrados = [];
@@ -40,27 +40,88 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
       // Evento click -> abrir modal con detalles
-      col.querySelector(".producto-card").addEventListener("click", () => {
+  col.querySelector(".producto-card").addEventListener("click", () => {
         document.getElementById("modalImagen").src = producto.imagen;
         document.getElementById("modalImagen").alt = producto.nombre;
         document.getElementById("modalNombre").textContent = producto.nombre;
-        document.getElementById("modalDescripcion").textContent =
-          producto.descripcion;
-        document.getElementById("modalCategoria").textContent =
-          producto.categoria;
+        document.getElementById("modalDescripcion").textContent = producto.descripcion;
+        document.getElementById("modalCategoria").textContent = producto.categoria;
         document.getElementById("modalStock").textContent = producto.stock;
-        document.getElementById(
-          "modalPrecio"
-        ).textContent = `S/ ${producto.precio.toFixed(2)}`;
-        document.getElementById(
-          "modalRating"
-        ).textContent = `⭐ ${producto.rating}`;
+        document.getElementById("modalPrecio").textContent = `S/ ${producto.precio.toFixed(2)}`;
+        document.getElementById("modalRating").textContent = `⭐ ${producto.rating}`;
 
-        // Mostrar modal con Bootstrap
-        const modal = new bootstrap.Modal(
-          document.getElementById("productModal")
-        );
+        const modal = new bootstrap.Modal(document.getElementById("productModal"));
         modal.show();
+
+        // === AGREGAR CONTENEDOR DE CANTIDAD Y BOTÓN ===
+        const modalBody = document.querySelector("#productModal .modal-body");
+
+        let cantidadContainer = document.getElementById("cantidadContainer");
+        if (!cantidadContainer) {
+          cantidadContainer = document.createElement("div");
+          cantidadContainer.id = "cantidadContainer";
+          cantidadContainer.className =
+            "d-flex align-items-center justify-content-center mt-3";
+          cantidadContainer.innerHTML = `
+            <button id="btnRestar" class="btn btn-outline-secondary btn-sm me-2">−</button>
+            <input type="number" id="inputCantidad" value="1" min="1" class="form-control text-center" style="width: 70px;">
+            <button id="btnSumar" class="btn btn-outline-secondary btn-sm ms-2">+</button>
+          `;
+          modalBody.appendChild(cantidadContainer);
+
+          const btnAgregar = document.createElement("button");
+          btnAgregar.id = "btnAgregarCarrito";
+          btnAgregar.className = "btn btn-danger w-100 mt-3 bi bi-cart-plus";
+          btnAgregar.textContent = "Agregar al carrito";
+          modalBody.appendChild(btnAgregar);
+        }
+
+        // Reiniciar cantidad cada vez
+        const inputCantidad = document.getElementById("inputCantidad");
+        const btnSumar = document.getElementById("btnSumar");
+        const btnRestar = document.getElementById("btnRestar");
+        const btnAgregar = document.getElementById("btnAgregarCarrito");
+
+        inputCantidad.value = 1;
+
+        btnSumar.onclick = () => {
+          inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        };
+        btnRestar.onclick = () => {
+          if (parseInt(inputCantidad.value) > 1)
+            inputCantidad.value = parseInt(inputCantidad.value) - 1;
+        };
+
+        // === AGREGAR AL CARRITO Y REDIRIGIR ===
+        btnAgregar.onclick = () => {
+          const cantidad = parseInt(inputCantidad.value);
+          if (isNaN(cantidad) || cantidad < 1) {
+            alert("Ingrese una cantidad válida");
+            return;
+          }
+
+          const productoCarrito = {
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            imagen: producto.imagen,
+            cantidad: cantidad,
+          };
+
+          let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+          const existente = carrito.find((p) => p.id === producto.id);
+
+          if (existente) {
+            existente.cantidad += cantidad;
+          } else {
+            carrito.push(productoCarrito);
+          }
+
+          localStorage.setItem("carrito", JSON.stringify(carrito));
+          modal.hide();
+
+          window.location.href = "../pages/carrito.html";
+        };
       });
 
       container.appendChild(col);
