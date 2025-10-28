@@ -782,3 +782,196 @@ body.dark-mode .toast {
 #shopCar:hover #cartCount {
   transform: scale(1.1);
 }
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes subtlePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+
+.navbar .navbar-brand img.logo-animate {
+  animation: subtlePulse 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+
+.navbar .nav-btn {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.navbar .nav-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card, .product-card, .category-card {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+
+
+.navbar.animated-gradient {
+  background: linear-gradient(90deg, #EC3237, #E07A86, #CB234A);
+  background-size: 300% 300%;
+  animation: gradientFlow 10s ease infinite;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+
+
+
+.nav-btn {
+  position: relative;
+  overflow: hidden;
+  background: #EC3237;
+}
+
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-25deg);
+  transition: left 0.7s ease;
+}
+
+.nav-btn:hover::after {
+  left: 125%;
+}
+
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes shineEffect {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+
+.category-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #EC3237, #E07A86, #CB234A);
+  background-size: 200% auto;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+
+.category-btn:hover {
+  animation: shineEffect 1.5s linear infinite;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+@-webkit-keyframes fadeUp {
+  from { opacity: 0; -webkit-transform: translateY(20px); }
+  to { opacity: 1; -webkit-transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@-webkit-keyframes shineEffect {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes shineEffect {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+
+.category-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: -webkit-linear-gradient(90deg, #EC3237, #E07A86, #CB234A);
+  background: linear-gradient(90deg, #EC3237, #E07A86, #CB234A);
+  background-size: 200% auto;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-animation: fadeUp 0.8s ease forwards;
+  animation: fadeUp 0.8s ease forwards;
+  -webkit-transition: -webkit-transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.category-btn:hover {
+  -webkit-animation: shineEffect 1.5s linear infinite;
+  animation: shineEffect 1.5s linear infinite;
+  -webkit-transform: translateY(-4px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+
+.nav-btn:hover {
+  background: -webkit-linear-gradient(90deg, #E07A86, #EC3237);
+  background: linear-gradient(90deg, #E07A86, #EC3237);
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.category-card:hover .category-img img,
+.card:hover img {
+  transform: scale(1.05);
+  transition: transform 0.4s ease-in-out;
+}
+
+
+.category-img img,
+.card img {
+  transition: transform 0.4s ease-in-out;
+}
