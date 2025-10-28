@@ -63,6 +63,15 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>`;
   
   document.body.insertAdjacentHTML("beforeend", modalHTML);
+// ======= Eliminar backdrop al cerrar el modal =======
+document.addEventListener("hidden.bs.modal", function (event) {
+  if (event.target.id === "loginModal") {
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) backdrop.remove();
+    document.body.classList.remove("modal-open");
+    document.body.style.removeProperty("padding-right");
+  }
+});
 
   // =====================================================
   // Funciones de usuarios y sesión
